@@ -22,10 +22,15 @@ print(f"✓ Loaded {len(df)} records")
 
 # 2. PREPARE FEATURES
 print("\n[2/6] Preparing features...")
-features = ['temp', 'RH', 'Ws', 'Rain', 'FFMC', 'DMC', 'DC', 'ISI']
+features = ['Temperature', ' RH', ' Ws', 'Rain ', 'FFMC', 'DMC', 'DC', 'ISI']
+# Convert to numeric
+for col in features:
+    df[col] = pd.to_numeric(df[col], errors='coerce')
+# Drop rows with NaN values
+df = df.dropna(subset=features + ['Classes  '])
 X = df[features]
 # Convert 'not fire' to 0 and 'fire' to 1 for FWI
-y = (df['Classes'] == 'fire').astype(int)
+y = (df['Classes  '].str.strip() == 'fire').astype(int)
 print(f"✓ Features: {features}")
 
 # 3. SPLIT DATA
