@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tempest - FWI Predictor</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body class="bg-gradient-to-br from-orange-400 via-red-500 to-pink-500 min-h-screen">
+    
+    <div class="container mx-auto px-4 py-8">
+        
+        <!-- Header -->
+        <div class="text-center text-white mb-8">
+            <h1 class="text-5xl font-bold mb-2">🔥 TEMPEST</h1>
+            <p class="text-xl">Fire Weather Index Predictor</p>
+        </div>
+
+        <!-- Main Card -->
+        <div class="max-w-4xl mx-auto bg-white rounded-3xl shadow-2xl p-8">
+            
+            <h2 class="text-3xl font-bold text-gray-800 mb-6 text-center">
+                Enter Environmental Data
+            </h2>
+
+            <form action="/predict" method="POST" class="space-y-6">
+                
+                <!-- Weather Parameters -->
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    
+                    <div>
+                        <label class="block text-sm font-semibold text-gray-700 mb-2">
+                            🌡️ Temperature (°C)
+                        </label>
+                        <input type="number" step="0.01" name="temperature" required
+                               class="w-full px-4 py-3 border-2 border-gray-300 rounded-lg focus:border-red-500 focus:outline-none"
+                               placeholder="e.g., 29">
+                    </div>
+
+                    <div>
+                        <label class="block text-sm font-semibold text-gray-700 mb-2">
+                            💧 Relative Humidity (%)
+                        </label>
+                        <input type="number" step="0.01" name="rh" required
+                               class="w-full px-4 py-3 border-2 border-gray-300 rounded-lg focus:border-red-500 focus:outline-none"
+                               placeholder="e.g., 57">
+                    </div>
+
+                    <div>
+                        <label class="block text-sm font-semibold text-gray-700 mb-2">
+                            💨 Wind Speed (km/h)
+                        </label>
+                        <input type="number" step="0.01" name="ws" required
+                               class="w-full px-4 py-3 border-2 border-gray-300 rounded-lg focus:border-red-500 focus:outline-none"
+                               placeholder="e.g., 18">
+                    </div>
+
+                    <div>
+                        <label class="block text-sm font-semibold text-gray-700 mb-2">
+                            🌧️ Rainfall (mm)
+                        </label>
+                        <input type="number" step="0.01" name="rain" required
+                               class="w-full px-4 py-3 border-2 border-gray-300 rounded-lg focus:border-red-500 focus:outline-none"
+                               placeholder="e.g., 0">
+                    </div>
+
+                    <div>
+                        <label class="block text-sm font-semibold text-gray-700 mb-2">
+                            🍃 FFMC
+                        </label>
+                        <input type="number" step="0.01" name="ffmc" required
+                               class="w-full px-4 py-3 border-2 border-gray-300 rounded-lg focus:border-red-500 focus:outline-none"
+                               placeholder="e.g., 65.7">
+                    </div>
+
+                    <div>
+                        <label class="block text-sm font-semibold text-gray-700 mb-2">
+                            📊 DMC
+                        </label>
+                        <input type="number" step="0.01" name="dmc" required
+                               class="w-full px-4 py-3 border-2 border-gray-300 rounded-lg focus:border-red-500 focus:outline-none"
+                               placeholder="e.g., 3.4">
+                    </div>
+
+                    <div>
+                        <label class="block text-sm font-semibold text-gray-700 mb-2">
+                            ⛰️ DC
+                        </label>
+                        <input type="number" step="0.01" name="dc" required
+                               class="w-full px-4 py-3 border-2 border-gray-300 rounded-lg focus:border-red-500 focus:outline-none"
+                               placeholder="e.g., 7.6">
+                    </div>
+
+                    <div>
+                        <label class="block text-sm font-semibold text-gray-700 mb-2">
+                            🔥 ISI
+                        </label>
+                        <input type="number" step="0.01" name="isi" required
+                               class="w-full px-4 py-3 border-2 border-gray-300 rounded-lg focus:border-red-500 focus:outline-none"
+                               placeholder="e.g., 1.3">
+                    </div>
+
+                    <div>
+                        <label class="block text-sm font-semibold text-gray-700 mb-2">
+                            📈 BUI
+                        </label>
+                        <input type="number" step="0.01" name="bui" required
+                               class="w-full px-4 py-3 border-2 border-gray-300 rounded-lg focus:border-red-500 focus:outline-none"
+                               placeholder="e.g., 3.4">
+                    </div>
+                    
+                </div>
+
+                <!-- Submit Button -->
+                <div class="text-center pt-6">
+                    <button type="submit" 
+                            class="bg-gradient-to-r from-red-500 to-orange-500 text-white font-bold text-lg px-12 py-4 rounded-full hover:scale-105 transform transition shadow-lg">
+                        🔮 Predict FWI
+                    </button>
+                </div>
+
+            </form>
+        </div>
+
+        <!-- Footer -->
+        <div class="text-center text-white mt-8">
+            <p class="text-sm">Powered by Ridge Regression ML Model</p>
+        </div>
+
+    </div>
+
+</body>
+</html>

@@ -1,0 +1,4 @@
+index,X,Y,month,day,FFMC,DMC,DC,ISI,temp,RH,Ws,Rain,Classes
+1,7,5,jan,fri,86,26,26,0,26.2,26,3,0,not fire
+2,7,4,jan,tue,63,89,210,6,22.2,43,2,13.1,fire
+3,7,4,jan,sat,57,100,48,7,8.3,53,3,0.2,fire
