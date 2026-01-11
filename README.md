@@ -139,5 +139,4 @@ Example: Temperature 35°C + Low humidity 20% + High wind 25 km/h + Low rainfall
 - Node: Tailwind CSS, PostCSS, Autoprefixer
 
 ---
-License: MIT
 
