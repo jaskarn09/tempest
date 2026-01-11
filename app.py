@@ -1,5 +1,6 @@
 """
-Tempest FWI Predictor - Flask App (DEBUG VERSION)
+Tempest FWI Predictor - Flask App (CORRECT VERSION)
+Predicts actual FWI values (0-50+) from meteorological data
 """
 
 from flask import Flask, render_template, request
@@ -44,28 +45,43 @@ def predict():
         
         # Predict
         features_scaled = scaler.transform([features])
-        print(f"Scaled features: {features_scaled}")
+        print(f"Scaled features: {features_scaled[0].round(2)}")
         
         prediction = model.predict(features_scaled)[0]
-        print(f"Raw prediction: {prediction}")
         
-        # Risk level (0 = no fire, 1 = fire)
-        if prediction < 0.5:
-            risk = "Low Risk"
+        # Clip negative values to 0 (shouldn't happen but just in case)
+        fwi_value = max(0, prediction)
+        
+        print(f"Raw prediction: {prediction:.2f}")
+        print(f"FWI value: {fwi_value:.2f}")
+        
+        # Determine risk level based on FWI value
+        # Standard FWI scale:
+        # 0-5: Low, 5-10: Moderate, 10-20: High, 20-30: Very High, 30+: Extreme
+        if fwi_value < 5:
+            risk = "Low"
             color = "green"
+        elif fwi_value < 10:
+            risk = "Moderate"
+            color = "yellow"
+        elif fwi_value < 20:
+            risk = "High"
+            color = "orange"
         else:
-            risk = "High Risk"
+            risk = "Extreme"
             color = "red"
         
-        print(f"Risk: {risk}, FWI: {prediction}")
+        print(f"Risk Level: {risk}")
         print(f"=====================\n")
         
         return render_template('result.html', 
-                             fwi=round(prediction, 2),
+                             fwi=round(fwi_value, 2),
                              risk=risk,
                              color=color)
     except Exception as e:
         print(f"ERROR: {str(e)}")
+        import traceback
+        traceback.print_exc()
         return render_template('result.html', error=str(e))
 
 if __name__ == '__main__':

@@ -68,37 +68,43 @@
                     <h3 class="font-bold text-lg mb-3 text-blue-900">📋 What This Means:</h3>
                     {% if color == 'green' %}
                     <ul class="list-disc list-inside space-y-2 text-gray-700">
-                        <li>Minimal fire danger</li>
+                        <li>Minimal fire danger (FWI under 5)</li>
                         <li>Normal outdoor activities safe</li>
-                        <li>Standard precautions apply</li>
+                        <li>Standard fire prevention measures apply</li>
+                        <li>Fire behavior: Fires start easily but spread slowly</li>
                     </ul>
                     {% elif color == 'yellow' %}
                     <ul class="list-disc list-inside space-y-2 text-gray-700">
-                        <li>Moderate fire potential</li>
-                        <li>Exercise caution outdoors</li>
-                        <li>Avoid burning debris</li>
-                        <li>Monitor weather updates</li>
+                        <li>Moderate fire potential (FWI 5-10)</li>
+                        <li>Exercise caution with outdoor burning</li>
+                        <li>Monitor weather conditions</li>
+                        <li>Fire behavior: Moderate rate of spread</li>
+                        <li>Keep firefighting equipment ready</li>
                     </ul>
                     {% elif color == 'orange' %}
                     <ul class="list-disc list-inside space-y-2 text-gray-700">
-                        <li><strong>High fire danger!</strong></li>
+                        <li><strong>High fire danger! (FWI 10-20)</strong></li>
                         <li>No outdoor burning permitted</li>
+                        <li>Fire behavior: Rapid spread expected</li>
                         <li>Prepare evacuation plans</li>
-                        <li>Report smoke immediately</li>
+                        <li>Report any smoke immediately</li>
+                        <li>Spotting and crowning possible</li>
                     </ul>
                     {% else %}
                     <ul class="list-disc list-inside space-y-2 text-gray-700">
-                        <li><strong>EXTREME FIRE DANGER!</strong></li>
+                        <li><strong>EXTREME FIRE DANGER! (FWI 20+)</strong></li>
+                        <li>Fire behavior: Very rapid spread, high intensity</li>
                         <li>Avoid all outdoor activities</li>
-                        <li>Emergency services on alert</li>
-                        <li>Follow evacuation orders</li>
+                        <li>Emergency services on high alert</li>
+                        <li>Follow all evacuation orders immediately</li>
+                        <li>Fires may be uncontrollable</li>
                     </ul>
                     {% endif %}
                 </div>
 
                 <!-- FWI Scale Reference -->
                 <div class="bg-gray-50 p-6 rounded-lg mb-6">
-                    <h3 class="font-bold text-lg mb-3 text-gray-800">📊 FWI Scale:</h3>
+                    <h3 class="font-bold text-lg mb-3 text-gray-800">📊 FWI Scale Reference:</h3>
                     <div class="grid grid-cols-2 md:grid-cols-4 gap-4 text-center text-sm">
                         <div class="bg-green-100 p-3 rounded-lg">
                             <div class="font-bold text-green-800">Low</div>
@@ -106,17 +112,22 @@
                         </div>
                         <div class="bg-yellow-100 p-3 rounded-lg">
                             <div class="font-bold text-yellow-800">Moderate</div>
-                            <div class="text-gray-600">5-15</div>
+                            <div class="text-gray-600">5-10</div>
                         </div>
                         <div class="bg-orange-100 p-3 rounded-lg">
                             <div class="font-bold text-orange-800">High</div>
-                            <div class="text-gray-600">15-30</div>
+                            <div class="text-gray-600">10-20</div>
                         </div>
                         <div class="bg-red-100 p-3 rounded-lg">
                             <div class="font-bold text-red-800">Extreme</div>
-                            <div class="text-gray-600">30+</div>
+                            <div class="text-gray-600">20+</div>
                         </div>
                     </div>
+                    <p class="text-xs text-gray-600 mt-4">
+                        <strong>FWI (Fire Weather Index)</strong> combines temperature, humidity, wind, 
+                        rain, and fuel moisture codes to predict fire danger. Values can exceed 50 in 
+                        extreme conditions.
+                    </p>
                 </div>
 
                 <!-- Back Button -->
@@ -131,6 +142,7 @@
             <!-- Footer -->
             <div class="text-center text-white">
                 <p class="text-sm">🤖 Powered by Ridge Regression ML Model</p>
+                <p class="text-xs mt-2">Trained on Algerian Forest Fires Dataset</p>
             </div>
 
         </div>
