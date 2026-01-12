@@ -23,11 +23,18 @@ print(f"✓ Loaded {len(df)} records")
 
 # 2. PREPARE FEATURES
 print("\n[2/7] Preparing features...")
-features = ['Temperature', ' RH', ' Ws', 'Rain ', 'FFMC', 'DMC', 'DC', 'ISI']
+# Normalize column names (CSV has stray spaces)
+df.columns = [c.strip() for c in df.columns]
+
+# Include BUI as a predictor (FWI is the target)
+features = ['Temperature', 'RH', 'Ws', 'Rain', 'FFMC', 'DMC', 'DC', 'ISI', 'BUI']
 
 # Convert to numeric
 for col in features:
-    df[col] = pd.to_numeric(df[col], errors='coerce')
+    if col in df.columns:
+        df[col] = pd.to_numeric(df[col], errors='coerce')
+    else:
+        raise KeyError(f"Expected feature column '{col}' not found in CSV columns: {df.columns.tolist()}")
 
 # ✅ CRITICAL: Use actual FWI values, NOT binary classification
 df['FWI'] = pd.to_numeric(df['FWI'], errors='coerce')
@@ -117,9 +124,9 @@ print(f"✓ Prediction range: {y_pred_test.min():.2f} to {y_pred_test.max():.2f}
 # Test on specific cases
 print("\n📋 Sample Predictions:")
 test_cases = [
-    ([29, 57, 18, 0, 65.7, 3.4, 7.6, 1.3], 0.5, 'Low FWI'),
-    ([31, 65, 14, 0, 84.5, 12.5, 54.3, 4.0], 5.6, 'Medium FWI'),
-    ([34, 53, 18, 0, 89.2, 17.1, 98.6, 10.0], 15.3, 'High FWI'),
+    ([29, 57, 18, 0, 65.7, 3.4, 7.6, 1.3, 3.4], 0.5, 'Low FWI'),
+    ([31, 65, 14, 0, 84.5, 12.5, 54.3, 4.0, 15.8], 5.6, 'Medium FWI'),
+    ([34, 53, 18, 0, 89.2, 17.1, 98.6, 10.0, 23.9], 15.3, 'High FWI'),
 ]
 
 print(f"{'Case':<12} | {'Expected':<8} | {'Predicted':<8} | {'Error':<6} | Status")
