@@ -617,6 +617,14 @@ video {
   margin-bottom: 2rem;
 }
 
+.mt-2 {
+  margin-top: 0.5rem;
+}
+
+.mt-4 {
+  margin-top: 1rem;
+}
+
 .mt-8 {
   margin-top: 2rem;
 }
@@ -936,6 +944,11 @@ video {
   line-height: 1.75rem;
 }
 
+.text-xs {
+  font-size: 0.75rem;
+  line-height: 1rem;
+}
+
 .font-bold {
   font-weight: 700;
 }
@@ -1063,4 +1076,39 @@ video {
   .md\:grid-cols-4 {
     grid-template-columns: repeat(4, minmax(0, 1fr));
   }
+}
+/* ===== Glassmorphism Card ===== */
+.glass-card {
+  background: rgba(255, 255, 255, 0.18);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border-radius: 24px;
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  box-shadow: 0 20px 45px rgba(0, 0, 0, 0.35);
+}
+
+/* ===== Glass Inputs ===== */
+.input-glass {
+  width: 100%;
+  padding: 0.75rem 1rem;
+  background: rgba(255, 255, 255, 0.25);
+  border: 2px solid rgba(255, 255, 255, 0.4);
+  border-radius: 0.5rem;
+  color: #fff;
+  outline: none;
+}
+
+.input-glass::placeholder {
+  color: rgba(255, 255, 255, 0.7);
+}
+
+.input-glass:focus {
+  border-color: #fb7185;
+  background: rgba(255, 255, 255, 0.35);
+}
+/* ===== Forest Background ===== */
+.bg-forest {
+  background:
+    linear-gradient(rgba(0,0,0,0.45), rgba(0,0,0,0.45)),
+    url("/static/bg-forest.jpg") center / cover no-repeat fixed;
 }
